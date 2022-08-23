@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoursesModule } from './courses/courses.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [CoursesModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    CoursesModule,
+    TypeOrmModule.forRoot({
+      entities: [`${__dirname}/**/*.entity.ts`],
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
