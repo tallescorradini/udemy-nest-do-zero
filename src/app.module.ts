@@ -12,7 +12,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     CoursesModule,
     TypeOrmModule.forRoot({
-      autoLoadEntities: true,
+      entities: [`${__dirname}/**/*.entity.ts`],
     }),
   ],
   controllers: [AppController],
