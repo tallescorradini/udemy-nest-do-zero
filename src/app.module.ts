@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoursesModule } from './courses/courses.module';
 import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -11,9 +11,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     CoursesModule,
-    TypeOrmModule.forRoot({
-      entities: [`${__dirname}/**/*.entity.ts`],
-    }),
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
